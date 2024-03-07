@@ -2,15 +2,17 @@ from eitreeGPT import EitreeGPT, Neo4jMatchPeople
 from flask import Flask, request
 from flask_cors import CORS
 import json
-from decouple import config
+import os
+from dotenv import load_dotenv
 
-# DOTENV_FILE = "/home/nophaieviscente/eitree/eitreeDeal/.env"  # Path to .env
-# config = Config(RepositoryEnv(DOTENV_FILE))
-RAW_DATA_PATH = config("RAW_DATA")
-NEO4J_URI = config("NEO4J_URI")
-NEO4J_PASSWORD = config("NEO4J_PASSWORD")
-NEO4J_USER = config("NEO4J_USER")
-OPENAI_API_KEY = config("OPENAI_KEY")
+load_dotenv()
+
+
+RAW_DATA_PATH = os.getenv("RAW_DATA")
+NEO4J_URI = os.getenv("NEO4J_URI")
+NEO4J_PASSWORD = os.getenv("NEO4J_PASSWORD")
+NEO4J_USER = os.getenv("NEO4J_USER")
+OPENAI_API_KEY = os.getenv("OPENAI_KEY")
 
 
 app = Flask(__name__)
