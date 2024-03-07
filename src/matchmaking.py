@@ -13,8 +13,8 @@ NEO4J_USER = config("NEO4J_USER")
 OPENAI_API_KEY = config("OPENAI_KEY")
 
 
-bot = Flask(__name__)
-CORS(app=bot)
+app = Flask(__name__)
+CORS(app=app)
 
 gepeto_eitree = EitreeGPT(api_key=OPENAI_API_KEY)
 neo4j_handler = Neo4jMatchPeople(
@@ -22,7 +22,7 @@ neo4j_handler = Neo4jMatchPeople(
 )
 
 
-@bot.route("/matchmaking", methods=["POST"])
+@app.route("/matchmaking", methods=["POST"])
 def input_description():
     request_data = request.get_json()
     description = request_data.get("description")
